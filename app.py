@@ -20,8 +20,10 @@ participation = st.slider("Participation Score", 0, 100, 85)
 previous = st.slider("Last Year Score", 0, 100, 75)
 missed = st.slider("Missed Assignments", 0, 2, 0)
 
+assignment_avg = (assignment1+assignment2)/2
+quiz_avg = (quiz1+quiz2)/2
 if st.button("Predict"):
-    input_data = np.array([[attendance, midterm, assignment1, assignment2, quiz1, quiz2 , participation, previous, missed]])
+    input_data = np.array([[attendance, midterm, assignment_avg, quiz_avg, participation, previous, missed]])
     prediction = model.predict(input_data)[0]
     result = "Pass" if prediction == 1 else "Fail"
     st.subheader(f"Prediction: {result}")
